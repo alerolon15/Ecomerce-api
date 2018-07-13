@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Compañias disponibles</h3>
+  <div class="row">
+    {{#each company}}
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        {{#each this.catalogo_imagenes}}
+          <img src="/public/images/logos/{{this.imagen_principal}}" alt="">
+        {{/each}}
+        <div class="caption">
+          <h3>{{this.nombre_fantasia}}</h3>
+          <p>quienes somos: {{this.quienes_somos}}</p>
+          <p>que hacemos: {{this.que_hacemos}}</p>
+          <p>direccion: {{this.direccion}}</p>
+          <p>email: {{this.email}}</p>
+          <p><a href="empresas/{{this.url_key}}" class="btn btn-primary" role="button">Ir al E-commerce</a></p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

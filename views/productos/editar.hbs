@@ -1,0 +1,90 @@
+{{> header}}
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<style media="screen">
+  /* layout.css Style */
+  .upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+  }
+
+  /* skin.css Style*/
+  .upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+  }
+  .upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+  }
+</style>
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Editar un producto</div>
+      <div class="card-body">
+        <form action="/listaProducto/editar/{{producto._id}}" autocomplete="off" method="POST">
+          {{{error}}}
+          {{#if errores}}
+            {{#each errores}}
+              <div class='alert alert-danger' role='alert'>{{this}}</div>
+            {{/each}}
+          {{/if}}
+          <div class="row">
+            {{#each producto.imagenes}}
+              <img src="/public/images/productos/{{ this }}" class="img-responsive col-xs-4" alt="">
+            {{/each}}
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampleInputName">CODIGO</label>
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="codigo" placeholder="Codigo" value="{{ producto.codigo }}">
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputLastName">TITULO</label>
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="titulo" placeholder="Titulo" value="{{ producto.titulo }}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampleInputPassword1">PRECIO</label>
+                <input class="form-control" type="number" name="precio" placeholder="Precio" value="{{ producto.precio }}">
+              </div>
+              <div class="col-md-6">
+                <label for="exampleConfirmPassword">CANTIDAD</label>
+                <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" value="{{ producto.cantidad }}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="exampleConfirmPassword">CATEGORIA</label>
+                <input class="form-control" type="text" name="categoria" placeholder="Categoria" value="{{ producto.categoria }}" >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="exampleInputPassword1">DESCRIPCION</label>
+                <textarea class="form-control" type="number" name="descripcion" placeholder="Descripcion">{{ producto.descripcion }}</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <button class="btn btn-lg btn-primary btn-block botonReg" type="submit">Editar Producto</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{{> footer}}

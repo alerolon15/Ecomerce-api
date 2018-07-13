@@ -1,0 +1,119 @@
+{{> header}}
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<style media="screen">
+  /* layout.css Style */
+  .upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+  }
+
+  /* skin.css Style*/
+  .upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+  }
+  .upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+  }
+</style>
+<div class="container">
+    <div class="card mx-auto mt-5">
+      <div class="card-header">Crear el Pedido</div>
+      <p style="margin:0px"><strong>Complete los datos del pedido, en caso de querer editar los productos elegidos, vuelva al <a href="/carrito">carrito de compras</a></strong></p>
+      <hr>
+      <div class="card-body" style="padding-top:0px">
+
+
+        <form action="/crearPedido" autocomplete="off" method="POST">
+          {{{error}}}
+          {{#if errores}}
+            {{#each errores}}
+              <div class='alert alert-danger' role='alert'>{{this}}</div>
+            {{/each}}
+          {{/if}}
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label class="col-md-3" for="examplenombreyapellido">Nombre y Apellido:</label>
+                <input class="col-md-9" class="form-control" type="text" name="nombreyapellido" placeholder="Nombre" value="{{usuario.nombre}} {{usuario.apellido}}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label class="col-md-3" for="exampledirreccion">Direccion:</label>
+                <textarea class="col-md-9" class="form-control" type="text" name="direccion" placeholder="Direccion" value="{{usuario.direccion}}"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampletipopago">Tipo de Pago</label>
+                  <select class="form-control" id="exampletipopago" name="tipoPago">
+                    <option>Efectivo</option>
+                    <option>Tarjeta de Credito</option>
+                    <option>Mercado Pago</option>
+                  </select>
+              </div>
+              <div class="col-md-6">
+                <label for="exampletipoentrega">Tipo de Entrega</label>
+                <select class="form-control" id="exampletipoentrega" name="tipoEntrega">
+                  <option>Retira en Local</option>
+                  <option>Entrega a Domicilio</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="">
+            <table class="table table-striped">
+              <p><strong>Lista de productos pedidos</strong></p>
+              {{{error}}}
+              <thead>
+                <tr style="text-align: center;">
+                  <th>codigo</th>
+                  <th>titulo</th>
+                  <th>categoria</th>
+                  <th>cantidad</th>
+                  <th>precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each productos}}
+                <tr>
+                  <td style="text-align: center;">{{this.item.codigo}}</td>
+                  <td style="text-align: center;">{{this.item.titulo}}</td>
+                  <td style="text-align: center;">{{this.item.categoria}}</td>
+                  <td style="text-align: center;">{{this.qty}}</td>
+                  <td style="text-align: center;">${{this.item.precio}}</td>
+                </tr>
+                {{/each }}
+                <tr>
+                  <td><strong>TOTAL</strong></td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td><strong>${{totalPrice}}.-</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <button class="btn btn-lg btn-primary btn-block botonReg" type="submit">Crear Pedido</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{{> footer}}

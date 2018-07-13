@@ -1,0 +1,55 @@
+{{> header}}
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<div class="container" style="margin-top:50px;">
+      <div class="row">
+        <div class="col-lg-3">
+          <img src="\public\images\logos\logo.png" class="img-responsive" alt="">
+          <h1 class="my-4">Importadora Austral</h1>
+          <div class="list-group">
+            {{#each categorias}}
+              <a href="#" class="list-group-item">{{ this }}</a>
+            {{/each}}
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+        <div class="col-lg-9">
+          {{#producto}}
+                  <div class="card mt-4">
+                    <img class="card-img-top img-fluid img-responsive" style="width: auto;margin: 0 auto;max-height: 650px;max-width: 95%;" src="/public/images/productos/{{ this.imagenes.[0] }}" alt="">
+                    <div class="card-body">
+                      <h3 class="card-title">{{ this.titulo }}</h3>
+                      <h4>${{this.precio}}.-</h4>
+                      <p class="card-text">{{this.descripcion}}</p>
+                      <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                      4.0 stars
+                    </div>
+                  </div>
+                  <!-- /.card -->
+
+                  <div class="card card-outline-secondary my-4">
+                    <div class="card-header">
+                      Product Reviews
+                    </div>
+                    <div class="card-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                      <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                      <hr>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                      <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                      <hr>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                      <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                      <hr>
+                      <a href="#" class="btn btn-success">Leave a Review</a>
+                    </div>
+                  </div>
+          </div>
+          {{/producto}}
+      </div>
+  </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+{{> footer}}
