@@ -26,6 +26,7 @@ var upload = multer({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(req.params);
   if(req.session && req.session.user && req.session.user.esAdmin){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
@@ -34,7 +35,7 @@ router.get('/', function(req, res, next) {
 
     res.render('productos/crear', { usuario: req.session.user, bgClass:'bg-dark'});
   }else{
-    res.redirect('/index');
+    res.redirect('/empresas');
   };
 });
 

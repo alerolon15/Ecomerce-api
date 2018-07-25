@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
         {{#compania}}
-        <a class="navbar-brand" style="padding: 5px 15px;" href="/{{this.nombre_fantasia}}">
+        <a class="navbar-brand" style="padding: 5px 15px;" href="/empresas/{{this.url_key}}/">
         <h2>{{this.nombre_fantasia}}</h2>
         {{else}}
         <a class="navbar-brand" style="padding: 5px 15px;" href="/">
@@ -23,9 +23,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar productos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="/crearProducto">Crear Productos</a></li>
-                <li><a href="/listaProducto">Ver lista de Productos</a></li>
-                <li><a href="/listaPedido">Ver lista de Pedidos</a></li>
+                <li><a href="crearProducto">Crear Productos</a></li>
+                <li><a href="listaProducto">Ver lista de Productos</a></li>
+                <li><a href="listaPedido">Ver lista de Pedidos</a></li>
             </ul>
           </li>
           {{/if}}

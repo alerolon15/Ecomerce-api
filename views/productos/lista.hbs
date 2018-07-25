@@ -12,7 +12,7 @@
     <thead>
       <tr style="text-align: center;">
         <th>codigo</th>
-        <th>titulo</th>
+        <th>nombre</th>
         <th>precio</th>
         <th>categoria</th>
         <th>cantidad</th>
@@ -22,13 +22,13 @@
       {{#each productos}}
         <tr>
           <td style="text-align: center;">{{this.codigo}}</td>
-          <td style="text-align: center;">{{this.titulo}}</td>
-          <td style="text-align: center;">${{this.precio}}</td>
+          <td style="text-align: center;">{{this.nombre}}</td>
+          <td style="text-align: center;">${{this.totalVenta}}</td>
           <td style="text-align: center;">{{this.categoria}}</td>
-          <td style="text-align: center;">{{this.cantidad}}</td>
+          <td style="text-align: center;">{{this.stock}}</td>
           <td>
             <a href="/listaProducto/editar/{{ this._id }}"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button></a>
-            <a href="/listaProducto/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este producto?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
+            <a href="listaProducto/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este producto?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
           </td>
         </tr>
       {{/each }}

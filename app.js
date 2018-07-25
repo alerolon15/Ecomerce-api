@@ -20,7 +20,7 @@ const registrarse = require('./routes/user/registrarse');
 const cambiarPassword = require('./routes/user/cambiarPassword');
 const recuperar = require('./routes/user/recuperar');
 const crearProducto = require('./routes/productos/crearProducto');
-const listaProducto = require('./routes/productos/listaProducto');
+//const listaProducto = require('./routes/productos/listaProducto');
 const infoProducto = require('./routes/productos/infoProducto');
 const listaPedido = require('./routes/pedidos/listaPedido');
 const misPedido = require('./routes/pedidos/misPedido');
@@ -31,16 +31,20 @@ const carrito = require('./routes/carrito/carrito');
 const v1 = require('./routes/v1');
 const index = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // mongoose conexion
 mongoose.connect('mongodb://localhost:27017/Aquosa',{useMongoClient: true});
 mongoose.connection.on('error', function(err){
-	console.log(' \x1b[41m%s\x1b[0m','Error al intentar conectar con MongoDB.', 'Mensaje: ' + err.message);
+	console.log(
+		' \x1b[41m%s\x1b[0m',
+		'Error al intentar conectar con MongoDB.',
+		'Mensaje: ' + err.message
+	);
 	process.exit();
 });
 // esta linea crea el usuario Administrador
-var crear = require('./models/crearUsuarioAdmin');
+const crear = require('./models/crearUsuarioAdmin');
 
 //sesiones
 app.use(session({
@@ -71,8 +75,7 @@ app.use('/login', login);
 app.use('/registrarse', registrarse);
 app.use('/cambiarPassword', cambiarPassword);
 app.use('/recuperar', recuperar);
-app.use('/crearProducto', crearProducto);
-app.use('/listaProducto', listaProducto);
+//app.use('/listaProducto', listaProducto);
 app.use('/infoProducto', infoProducto);
 app.use('/crearPedido', crearPedido);
 app.use('/listaPedido', listaPedido);
@@ -81,6 +84,7 @@ app.use('/infoPedido', infoPedido);
 app.use('/agregarCarrito', agregarCarrito);
 app.use('/carrito', carrito);
 app.use('/empresas', index);
+//app.use('/crearProducto', crearProducto);
 
 
 // catch 404 and forward to error handler

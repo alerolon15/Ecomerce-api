@@ -31,7 +31,7 @@ router.post('/',function(req,res){
 		}
 		if(users) {
 			req.session.user = users;
-			return res.redirect('/index')}
+			return res.redirect('/empresas')}
     });
 });
 
