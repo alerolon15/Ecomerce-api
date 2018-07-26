@@ -128,6 +128,7 @@ exports.editarProducto = async (req, res) => {
               res.render('productos/lista', {
                 usuario: req.session.user,
                 productos: productos,
+                compania: compania,
                 error: "<div class='alert alert-danger' role='alert'>no se ha podido modificar correctamente el producto.</div>"
                });
             });
@@ -136,6 +137,7 @@ exports.editarProducto = async (req, res) => {
               res.render('productos/lista', {
                 usuario: req.session.user,
                 productos: productos,
+                compania: compania,
                 error: "<div class='alert alert-success' role='alert'>Se ha modificado correctamente el producto.</div>"
                });
             });
