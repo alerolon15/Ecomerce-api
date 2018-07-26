@@ -27,8 +27,8 @@
           <td style="text-align: center;">{{this.categoria}}</td>
           <td style="text-align: center;">{{this.stock}}</td>
           <td>
-            <a href="/listaProducto/editar/{{ this._id }}"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button></a>
-            <a href="listaProducto/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este producto?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
+            <a href="/empresas/{{this.urlcompanias}}/listaProducto/editar/{{ this._id }}"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button></a>
+            <a href="/empresas/{{this.urlcompanias}}/listaProducto/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este producto?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
           </td>
         </tr>
       {{/each }}

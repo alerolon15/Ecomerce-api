@@ -1,5 +1,5 @@
 {{> header}}
-<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 <style media="screen">
   /* layout.css Style */
   .upload-drop-zone {
@@ -25,7 +25,7 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Editar un producto</div>
       <div class="card-body">
-        <form action="/listaProducto/editar/{{producto._id}}" autocomplete="off" method="POST">
+        <form action="" autocomplete="off" method="POST">
           {{{error}}}
           {{#if errores}}
             {{#each errores}}
@@ -34,30 +34,47 @@
           {{/if}}
           <div class="row">
             {{#each producto.imagenes}}
-              <img src="/public/images/productos/{{ this }}" class="img-responsive col-xs-4" alt="">
+              <img src="/public/images/productos/{{ this }}" class="img-responsive col-xs-4" style="height:100%;">
             {{/each}}
           </div>
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName">CODIGO</label>
-                <input class="form-control" type="text" aria-describedby="nameHelp" name="codigo" placeholder="Codigo" value="{{ producto.codigo }}">
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="codigo" placeholder="Codigo" value="{{producto.codigo}}">
               </div>
               <div class="col-md-6">
-                <label for="exampleInputLastName">TITULO</label>
-                <input class="form-control" type="text" aria-describedby="nameHelp" name="titulo" placeholder="Titulo" value="{{ producto.titulo }}">
+                <label for="exampleInputLastName">NOMBRE</label>
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="nombre" placeholder="Nombre" value="{{producto.nombre}}" >
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">
-                <label for="exampleInputPassword1">PRECIO</label>
-                <input class="form-control" type="number" name="precio" placeholder="Precio" value="{{ producto.precio }}">
+              <div class="col-md-12">
+                <p>Precios de compra y venta</p>
+                <hr>
               </div>
               <div class="col-md-6">
-                <label for="exampleConfirmPassword">CANTIDAD</label>
-                <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" value="{{ producto.cantidad }}">
+                <label for="exampleInputPassword1">Valor Compra</label>
+                <input class="form-control" type="number" name="valorCompra" placeholder="Valor Compra" value="{{producto.valorCompra}}">
+                <label for="exampleInputPassword1">IVA Compra</label>
+                <input class="form-control" type="number" name="ivaCompra" placeholder="IVA Compra" value="{{producto.ivaCompra}}">
+                <label for="exampleInputPassword1">Total Compra</label>
+                <input class="form-control" type="number" name="totalCompra" placeholder="Total Compra" value="{{producto.totalCompra}}">
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputPassword1">Valor Venta</label>
+                <input class="form-control" type="number" name="valorVenta" placeholder="Valor Venta" value="{{producto.valorVenta}}">
+                <label for="exampleInputPassword1">IVA Venta</label>
+                <input class="form-control" type="number" name="ivaVenta" placeholder="IVA Venta" value="{{producto.ivaVenta}}">
+                <label for="exampleInputPassword1">Total Venta</label>
+                <input class="form-control" type="number" name="totalVenta" placeholder="Total Venta" value="{{producto.totalVenta}}">
+              </div>
+              <div class="col-md-12">
+                <hr>
+                <label for="exampleConfirmPassword">STOCK</label>
+                <input class="form-control" type="number" name="stock" placeholder="stock" value="{{producto.stock}}">
               </div>
             </div>
           </div>
@@ -65,7 +82,7 @@
             <div class="form-row">
               <div class="col-md-12">
                 <label for="exampleConfirmPassword">CATEGORIA</label>
-                <input class="form-control" type="text" name="categoria" placeholder="Categoria" value="{{ producto.categoria }}" >
+                <input class="form-control" type="text" name="categoria" placeholder="Categoria" value="{{producto.categoria}}">
               </div>
             </div>
           </div>
@@ -73,7 +90,23 @@
             <div class="form-row">
               <div class="col-md-12">
                 <label for="exampleInputPassword1">DESCRIPCION</label>
-                <textarea class="form-control" type="number" name="descripcion" placeholder="Descripcion">{{ producto.descripcion }}</textarea>
+                <textarea class="form-control" type="number" name="descripcion" placeholder="Descripcion">{{producto.descripcion}}</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <p>Datos Proveedor</p>
+                <hr>
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputName">Razon Social</label>
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="razonSocial" placeholder="Razon Social" value="{{#each producto.proveedores}}{{this.razonSocial}}{{/each}}" >
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputLastName">Email</label>
+                <input class="form-control" type="text" aria-describedby="nameHelp" name="email" placeholder="Email" value="{{#each producto.proveedores}}{{this.email}}{{/each}}" >
               </div>
             </div>
           </div>

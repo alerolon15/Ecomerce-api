@@ -19,9 +19,6 @@ const login = require('./routes/user/login');
 const registrarse = require('./routes/user/registrarse');
 const cambiarPassword = require('./routes/user/cambiarPassword');
 const recuperar = require('./routes/user/recuperar');
-const crearProducto = require('./routes/productos/crearProducto');
-//const listaProducto = require('./routes/productos/listaProducto');
-const infoProducto = require('./routes/productos/infoProducto');
 const listaPedido = require('./routes/pedidos/listaPedido');
 const misPedido = require('./routes/pedidos/misPedido');
 const infoPedido = require('./routes/pedidos/infoPedido');
@@ -75,17 +72,15 @@ app.use('/login', login);
 app.use('/registrarse', registrarse);
 app.use('/cambiarPassword', cambiarPassword);
 app.use('/recuperar', recuperar);
-//app.use('/listaProducto', listaProducto);
-app.use('/infoProducto', infoProducto);
 app.use('/crearPedido', crearPedido);
 app.use('/listaPedido', listaPedido);
 app.use('/misPedido', misPedido);
 app.use('/infoPedido', infoPedido);
 app.use('/agregarCarrito', agregarCarrito);
-app.use('/carrito', carrito);
 app.use('/empresas', index);
-//app.use('/crearProducto', crearProducto);
-
+app.use('/', function(req, res) {
+	res.redirect('/empresas');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

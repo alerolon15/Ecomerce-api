@@ -10,16 +10,16 @@ module.exports = function Carrito(oldCart) {
             storedItem = this.items[id] = {item: item, qty: 0, price: 0};
         }
         storedItem.qty++;
-        storedItem.price = storedItem.item.precio * storedItem.qty;
+        storedItem.price = storedItem.item.totalVenta * storedItem.qty;
         this.totalQty++;
-        this.totalPrice += storedItem.item.precio;
+        this.totalPrice += storedItem.item.totalVenta;
     };
 
     this.reduceByOne = function(id) {
         this.items[id].qty--;
-        this.items[id].price -= this.items[id].item.precio;
+        this.items[id].price -= this.items[id].item.totalVenta;
         this.totalQty--;
-        this.totalPrice -= this.items[id].item.precio;
+        this.totalPrice -= this.items[id].item.totalVenta;
 
         if (this.items[id].qty <= 0) {
             delete this.items[id];
