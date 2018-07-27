@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
       console.log(req.session.user);
       res.render('index/index', { usuario: req.session.user, company: company});
     }else{
-      res.render('index/index');
+      res.render('index/index', {company: company});
     };
   });
 });
