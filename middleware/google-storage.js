@@ -2,7 +2,7 @@
 const storage = require('@google-cloud/storage');
 const fs = require('fs');
 const path = require('path');
-console.log(path.join(__dirname, '..', '/heroku-test-a22764fc49b5'));
+//console.log(path.join(__dirname, '..', '/heroku-test-a22764fc49b5'));
 const gcs = storage({
   projectId: 'heroku-test',
   keyFilename: path.j

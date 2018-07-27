@@ -10,11 +10,6 @@ exports.listaGet = async (req, res) => {
     let companiaUrlkey = compania[0].url_key;
     Producto.find({urlcompanias:companiaUrlkey}, function(err, productos){
       if(req.session && req.session.user && req.session.user.esAdmin){
-        var inicialN = req.session.user.nombre.substring(0,1);
-        var inicialA = req.session.user.apellido.substring(0,1);
-        var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-        req.session.user.iniciales = iniciales;
-
         res.render('productos/lista', { usuario: req.session.user, productos: productos, compania: compania });
       }else{
         res.render('productos/lista', { productos: productos, compania: compania });
@@ -32,11 +27,6 @@ exports.borrarProducto = async (req, res) => {
       console.log(err);
     };
     if(req.session && req.session.user && req.session.user.esAdmin){
-      let inicialN = req.session.user.nombre.substring(0,1);
-      let inicialA = req.session.user.apellido.substring(0,1);
-      let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-
       res.redirect('/empresas/' + req.params.urlkey + '/listaProducto');
     }else{
       res.redirect("/empresas")
@@ -50,12 +40,6 @@ exports.editarProducto = async (req, res) => {
   console.log('paso1');
   Company.find({url_key:urlkey}, function(err, compania){
     if(req.session && req.session.user && req.session.user.esAdmin){
-      var inicialN = req.session.user.nombre.substring(0,1);
-      var inicialA = req.session.user.apellido.substring(0,1);
-      var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-
-
       /* validaciones del registro */
       req.check('codigo', 'Ingrese un codigo!').notEmpty();
       req.check('nombre', 'Ingrese un nombre!').notEmpty();

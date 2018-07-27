@@ -15,9 +15,6 @@ router.get('/:id', function(req, res, next) {
        carrito.add(producto, producto.id);
        req.session.user.carrito = carrito;
        res.send(req.session.user.carrito);
-       //res.redirect('/index');
-       //var carritoString = JSON.stringify(carrito);
-       //console.log(carritoString);
     });
 });
 

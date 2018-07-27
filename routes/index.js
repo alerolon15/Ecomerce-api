@@ -15,11 +15,6 @@ const ProductosLista = require('./productos/listaProducto');
 router.get('/', function(req, res, next) {
   Company.find({}, function(err, company){
     if(req.session && req.session.user){
-      let inicialN = req.session.user.nombre.substring(0,1);
-      let inicialA = req.session.user.apellido.substring(0,1);
-      let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-      console.log(req.session.user);
       res.render('index/index', { usuario: req.session.user, company: company});
     }else{
       res.render('index/index', {company: company});
@@ -44,10 +39,6 @@ router.get('/:urlkey', function(req, res, next) {
         }
       });
       if(req.session && req.session.user){
-        let inicialN = req.session.user.nombre.substring(0,1);
-        let inicialA = req.session.user.apellido.substring(0,1);
-        let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-        req.session.user.iniciales = iniciales;
         res.render('index/commerce', { usuario: req.session.user, productos: productos, categorias: categoriasV, compania:compania});
       }else{
         res.render('index/commerce', { productos: productos,categorias: categoriasV, compania:compania});
@@ -80,10 +71,6 @@ router.get('/:urlkey/categoria/:categoria', function(req, res, next) {
         return categoria.indexOf(item.categoria) > -1;
       });
       if(req.session && req.session.user){
-        let inicialN = req.session.user.nombre.substring(0,1);
-        let inicialA = req.session.user.apellido.substring(0,1);
-        let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-        req.session.user.iniciales = iniciales;
         res.render('index/commerce', { usuario: req.session.user, productos: productos, categorias: categoriasV, compania:compania});
       }else{
         res.render('index/commerce', { productos: productos,categorias: categoriasV, compania:compania});

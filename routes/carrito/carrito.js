@@ -10,11 +10,6 @@ exports.get = function(req, res, next) {
     let urlkey = req.params.urlkey;
     let productoId = req.params.id;
     Company.find({url_key:urlkey},function(err,compania){
-      var inicialN = req.session.user.nombre.substring(0,1);
-      var inicialA = req.session.user.apellido.substring(0,1);
-      var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-
       if (!req.session.user.carrito) {
         return res.render('carrito/carrito', {usuario: req.session.user, products: null, compania:compania});
       }

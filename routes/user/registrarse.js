@@ -29,17 +29,20 @@ router.post('/',function(req,res){
     return res.render('login/registrarse',options);
   };
 
-	var email = req.body.email.toLowerCase();
-	var password = req.body.password;
-  var nombre = req.body.nombre;
-	var apellido = req.body.apellido;
+	let email = req.body.email.toLowerCase();
+	let password = req.body.password;
+  let nombre = req.body.nombre;
+	let apellido = req.body.apellido;
+  let iniciales = setIniciales(nombre,apellido);
 
-  var data = {
+  let data = {
     nombre,
     apellido,
     email,
-    password
+    password,
+    iniciales
   };
+
 	User.findOne({email: email}, function(err,users){
 		if(err){
 			console.log(err);

@@ -48,3 +48,11 @@ NSTR = str =>
     .split(' ')
     .join('')
     .toLowerCase();
+
+//Crear Iniciales de usuario para view
+setIniciales = (nombre, apellido) => {
+  let inicialN = nombre.substring(0,1);
+  let inicialA = apellido.substring(0,1);
+  let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
+  return iniciales;
+};

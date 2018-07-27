@@ -30,11 +30,6 @@ exports.crearGet = async (req, res) => {
   let urlkey = req.params.urlkey;
   Company.find({url_key:urlkey}, function(err, compania){
     if(req.session && req.session.user && req.session.user.esAdmin){
-      let inicialN = req.session.user.nombre.substring(0,1);
-      let inicialA = req.session.user.apellido.substring(0,1);
-      let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-
       res.render('productos/crear', { usuario: req.session.user, compania:compania, bgClass:'bg-dark'});
     }else{
       res.redirect('/empresas');
@@ -47,10 +42,6 @@ exports.editarGet = function(req, res, next) {
   let productoEditar = req.params.id;
   Company.find({url_key:urlkey}, function(err, compania){
     if(req.session && req.session.user && req.session.user.esAdmin){
-      let inicialN = req.session.user.nombre.substring(0,1);
-      let inicialA = req.session.user.apellido.substring(0,1);
-      let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
       Producto.findById(productoEditar, function(err, producto){
         if(err) {
           console.log(err);
@@ -74,11 +65,6 @@ exports.crearPost = async (req, res) => {
     let companiaId = compania[0]._id;
 
     if(req.session && req.session.user && req.session.user.esAdmin){
-      let inicialN = req.session.user.nombre.substring(0,1);
-      let inicialA = req.session.user.apellido.substring(0,1);
-      let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
-      req.session.user.iniciales = iniciales;
-
       /* validaciones del registro */
       req.check('codigo', 'Ingrese un codigo!').notEmpty();
       req.check('nombre', 'Ingrese un nombre!').notEmpty();

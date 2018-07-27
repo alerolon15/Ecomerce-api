@@ -36,12 +36,14 @@ router.post('/',function(req,res){
   var nombre = req.session.user.nombre;
 	var apellido = req.session.user.apellido;
   var password = req.body.nuevapassword;
+  var iniciales = setIniciales(nombre,apellido);
 
   var data = {
     nombre,
     apellido,
     email,
-    password
+    password,
+    iniciales
   };
 	User.findOne({email: email, password: viejapassword}, function(err,users){
 		if(err){
