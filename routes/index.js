@@ -11,8 +11,6 @@ const ProductosInfo = require('./productos/infoProducto');
 const ProductosLista = require('./productos/listaProducto');
 
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Company.find({}, function(err, company){
@@ -21,10 +19,10 @@ router.get('/', function(req, res, next) {
       let inicialA = req.session.user.apellido.substring(0,1);
       let iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
       req.session.user.iniciales = iniciales;
-
+      console.log(req.session.user);
       res.render('index/index', { usuario: req.session.user, company: company});
     }else{
-      res.render('index/index', { company: company});
+      res.render('index/index');
     };
   });
 });
