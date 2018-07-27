@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const fs = require('fs');
 const User = require('../../models/user');
 const Producto = require('../../models/producto');
 const Company = require('../../models/company');
+
+const rutaUnlink = path.join(__dirname, '../../public/images/productos/');
 
 exports.listaGet = async (req, res) => {
   let urlkey = req.params.urlkey;
@@ -23,6 +27,12 @@ exports.listaGet = async (req, res) => {
 exports.borrarProducto = async (req, res) => {
   let productoBorrar = req.params.id;
   Producto.findByIdAndRemove(productoBorrar, function(err, producto){
+    producto.imagenes.forEach(function(img){
+      let urlFile = rutaUnlink + img;
+      fs.unlink(urlFile, (err) => {
+        if (err) throw err;
+      });
+    });
     if(err) {
       console.log(err);
     };

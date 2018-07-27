@@ -13,7 +13,7 @@ const multer = require('multer');
 const request = require('request');
 const company = require('./models/company');
 const product = require('./models/product');
-
+const fs = require('fs');
 
 const login = require('./routes/user/login');
 const registrarse = require('./routes/user/registrarse');
