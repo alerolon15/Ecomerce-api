@@ -34,7 +34,7 @@ let data = {
   }],
   productos: [],
   active: true,
-  url_key: 'url2',
+  url_key: 'mistralshoes',
   productos: []
 };
 
