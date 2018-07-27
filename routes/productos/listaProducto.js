@@ -22,15 +22,13 @@ exports.listaGet = async (req, res) => {
   });
 };
 
-
-
 exports.borrarProducto = async (req, res) => {
   let productoBorrar = req.params.id;
   Producto.findByIdAndRemove(productoBorrar, function(err, producto){
     producto.imagenes.forEach(function(img){
       let urlFile = rutaUnlink + img;
-      fs.unlink(urlFile, (err) => {
-        if (err) throw err;
+      fs.unlink(urlFile, (error) => {
+        if (error) throw error;
       });
     });
     if(err) {
