@@ -12,7 +12,7 @@
     "client-sessions": "^0.8.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "^4.16.3",
     "express-formidable": "^1.0.0",
     "express-handlebars": "^3.0.0",
     "express-validator": "^4.3.0",
