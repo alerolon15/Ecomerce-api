@@ -26,6 +26,7 @@ const crearPedido = require('./routes/pedidos/crearPedido');
 const agregarCarrito = require('./routes/carrito/agregarCarrito');
 const carrito = require('./routes/carrito/carrito');
 const v1 = require('./routes/v1');
+const Empresas = require('./routes/empresas/index');
 const index = require('./routes/index');
 
 const app = express();
@@ -66,7 +67,7 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Las rutas del API
+//Las rutas de la app
 app.use('/v1', v1);
 app.use('/login', login);
 app.use('/registrarse', registrarse);
@@ -77,7 +78,9 @@ app.use('/listaPedido', listaPedido);
 app.use('/misPedido', misPedido);
 app.use('/infoPedido', infoPedido);
 app.use('/agregarCarrito', agregarCarrito);
+app.use('/owner', Empresas);
 app.use('/empresas', index);
+
 app.use('/', function(req, res) {
 	res.redirect('/empresas');
 });

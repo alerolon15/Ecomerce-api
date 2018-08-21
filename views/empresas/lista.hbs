@@ -1,0 +1,43 @@
+<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+{{#usuario}}
+      {{> panel}}
+{{else}}
+      {{> header}}
+{{/usuario}}
+<div class="container" style="margin-top:50px;">
+  <h2>Compañias</h2>
+  <p>Lista de Compañias que eres dueño</p>
+  {{{error}}}
+  <hr>
+  <input class="form-control" id="myInput" type="text" placeholder="Filtrar busqueda">
+  <table class="table table-striped">
+    <thead>
+      <tr style="text-align: center;">
+        <th>nombre</th>
+        <th>quienes somos</th>
+        <th>que hacemos</th>
+        <th>email</th>
+        <th>direccion</th>
+      </tr>
+    </thead>
+    <tbody id="tablaProductos">
+      {{#each compania}}
+        <tr>
+          <td style="text-align: center;">{{this.nombre_fantasia}}</td>
+          <td style="text-align: center;">{{this.quienes_somos}}</td>
+          <td style="text-align: center;">${{this.que_hacemos}}</td>
+          <td style="text-align: center;">{{this.email}}</td>
+          <td style="text-align: center;">{{this.direccion}}</td>
+          <td>
+            <a href="listaEmpresas/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar esta Empresa?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
+          </td>
+        </tr>
+      {{/each }}
+    </tbody>
+  </table>
+</div>
+
+
+{{>footer }}

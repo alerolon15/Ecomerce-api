@@ -5,9 +5,7 @@
       <div class="row">
         <div class="col-lg-3">
           {{#compania}}
-            {{#each this.catalogo_imagenes}}
-              <img src='/public/images/logos/{{this.imagen_principal}}' class="img-responsive" alt="">
-            {{/each}}
+            <img src='/public/images/empresas/{{this.imagen_principal}}' class="img-responsive" alt="">
             <h4>{{this.nombre_fantasia}}</h4>
           {{/compania}}
         </div>

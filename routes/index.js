@@ -10,7 +10,6 @@ const ProductosCrear = require('./productos/crearProducto');
 const ProductosInfo = require('./productos/infoProducto');
 const ProductosLista = require('./productos/listaProducto');
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Company.find({}, function(err, company){

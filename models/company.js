@@ -21,17 +21,6 @@ var producto_ServicioSchema = new Schema({
   producto_servicio_3: String,
   descripcion_3: String
 });
-//
-
-var catalogo_ImagenesSchema = new Schema({
-  imagen_principal: String,
-  imagen_1: String,
-  imagen_2: String,
-  imagen_3: String,
-  imagen_4: String,
-  imagen_5: String,
-  imagen_6: String
-});
 
 // Creacion campos asociados a la Empresa
 
@@ -43,17 +32,14 @@ var schema = new Schema({
   direccion: { type: String, required: true },
   email: {
     type: String,
-    required: true,
-    index: {
-      unique: true
-    }
+    required: true
   },
   telefono: [telefonoSchema],
   redes_sociales: [redes_SocialesSchema],
   caracteristicas_negocio: [caracteristicas_NegocioSchema],
   descripcion_producto_servicio: [producto_ServicioSchema],
-  catalogo_imagenes: [catalogo_ImagenesSchema],
-  productos: [{ type: ObjectID, ref: 'companies' }],
+  imagen_principal: String,
+  catalogo_imagenes: [String],
   active: { type: Boolean, default: true },
   url_key: {
     type: String,
@@ -62,7 +48,7 @@ var schema = new Schema({
     index: true,
     unique: true
   },
-  productos: [{ type: Schema.Types.ObjectId, ref: 'products' }]
+  owner: [{ type: Schema.Types.ObjectId, ref: 'user' }]
 });
 schema.pre('save', function(next) {
   if (this.isModified('nombre_fantasia') || this.isNew) {

@@ -11,9 +11,7 @@
     {{#each company}}
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        {{#each this.catalogo_imagenes}}
-          <img src="/public/images/logos/{{this.imagen_principal}}" alt="">
-        {{/each}}
+        <img src="/public/images/empresas/{{this.imagen_principal}}" alt="">
         <div class="caption">
           <h3>{{this.nombre_fantasia}}</h3>
           <p>quienes somos: {{this.quienes_somos}}</p>
