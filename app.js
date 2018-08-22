@@ -33,7 +33,7 @@ const index = require('./routes/index');
 const app = express();
 
 // mongoose conexion
-mongoose.connect('mongodb://localhost:27017/Aquosa',{useMongoClient: true});
+mongoose.connect('mongodb://admin:admin@ds139929.mlab.com:39929/commerce-dev',{useMongoClient: true});
 mongoose.connection.on('error', function(err){
 	console.log(
 		' \x1b[41m%s\x1b[0m',
