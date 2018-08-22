@@ -127,6 +127,6 @@ exports.crearPost = async (req, res) => {
         });
       };
     });
-
   };
+  res.redirect('/empresas');
 };

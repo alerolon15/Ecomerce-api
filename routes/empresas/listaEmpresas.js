@@ -10,11 +10,15 @@ const rutaUnlink = path.join(__dirname, '../../public/images/empresas/');
 
 exports.listaGet = async (req, res) => {
   let owner = req.session.user._id;
-  Company.find({owner:owner}, function(err, compania){
+  let query = {owner:owner}
+  if (req.session.user.esAdmin) {
+    query = {}
+  };
+  Company.find(query, function(err, compania){
     if(req.session && req.session.user && req.session.user.esOwner){
       res.render('empresas/lista', { usuario: req.session.user, compania: compania });
     }else{
-      res.render('empresas/lista', { compania: compania });
+      res.redirect('/empresas');
     }
   });
 };
@@ -37,7 +41,7 @@ exports.borrar = async (req, res) => {
     if(req.session && req.session.user && req.session.user.esOwner){
       res.redirect('/listaEmpresas');
     }else{
-      res.redirect("/empresas")
+      res.redirect('/empresas');
     }
   });
 };
