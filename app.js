@@ -16,6 +16,7 @@ const product = require('./models/product');
 const fs = require('fs');
 
 const login = require('./routes/user/login');
+const usuarios = require('./routes/user/adminuser');
 const registrarse = require('./routes/user/registrarse');
 const cambiarPassword = require('./routes/user/cambiarPassword');
 const recuperar = require('./routes/user/recuperar');
@@ -59,7 +60,7 @@ app.use('/public', express.static('public'));
 
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -79,6 +80,7 @@ app.use('/misPedido', misPedido);
 app.use('/infoPedido', infoPedido);
 app.use('/agregarCarrito', agregarCarrito);
 app.use('/owner', Empresas);
+app.use('/admin', usuarios);
 app.use('/empresas', index);
 
 app.use('/', function(req, res) {

@@ -6,7 +6,7 @@ var Pedido = require('../../models/pedido');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     Pedido.find({}, function(err, pedidos){
       if (pedidos.length != 0) {
         pedidos.forEach(function(pedi){
@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/borrar/:id', function(req, res, next) {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
@@ -44,7 +44,7 @@ router.get('/borrar/:id', function(req, res, next) {
 });
 
 router.get('/editar/:id', function(req, res, next) {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
@@ -63,7 +63,7 @@ router.get('/editar/:id', function(req, res, next) {
 });
 
 router.post('/editar/:id', function(req, res, next) {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();

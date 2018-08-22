@@ -13,7 +13,7 @@ exports.listaGet = async (req, res) => {
   Company.find({url_key:urlkey}, function(err, compania){
     let companiaUrlkey = compania[0].url_key;
     Producto.find({urlcompanias:companiaUrlkey}, function(err, productos){
-      if(req.session && req.session.user && req.session.user.esAdmin){
+      if(req.session && req.session.user && req.session.user.esOwner){
         res.render('productos/lista', { usuario: req.session.user, productos: productos, compania: compania });
       }else{
         res.render('productos/lista', { productos: productos, compania: compania });
@@ -34,7 +34,7 @@ exports.borrarProducto = async (req, res) => {
     if(err) {
       console.log(err);
     };
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       res.redirect('/empresas/' + req.params.urlkey + '/listaProducto');
     }else{
       res.redirect("/empresas")
@@ -47,7 +47,7 @@ exports.editarProducto = async (req, res) => {
   let productoEditar = req.params.id;
   console.log('paso1');
   Company.find({url_key:urlkey}, function(err, compania){
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       /* validaciones del registro */
       req.check('codigo', 'Ingrese un codigo!').notEmpty();
       req.check('nombre', 'Ingrese un nombre!').notEmpty();

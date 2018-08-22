@@ -29,7 +29,7 @@ var upload = multer({
 exports.crearGet = async (req, res) => {
   let urlkey = req.params.urlkey;
   Company.find({url_key:urlkey}, function(err, compania){
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       res.render('productos/crear', { usuario: req.session.user, compania:compania, bgClass:'bg-dark'});
     }else{
       res.redirect('/empresas');
@@ -41,7 +41,7 @@ exports.editarGet = function(req, res, next) {
   let urlkey = req.params.urlkey;
   let productoEditar = req.params.id;
   Company.find({url_key:urlkey}, function(err, compania){
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       Producto.findById(productoEditar, function(err, producto){
         if(err) {
           console.log(err);
@@ -64,7 +64,7 @@ exports.crearPost = async (req, res) => {
     let companiaUrlkey = compania[0].url_key;
     let companiaId = compania[0]._id;
 
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       /* validaciones del registro */
       req.check('codigo', 'Ingrese un codigo!').notEmpty();
       req.check('nombre', 'Ingrese un nombre!').notEmpty();

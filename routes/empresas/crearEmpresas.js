@@ -28,7 +28,7 @@ exports.editarGet = function(req, res, next) {
   let urlkey = req.params.urlkey;
   let productoEditar = req.params.id;
   Company.find({url_key:urlkey}, function(err, compania){
-    if(req.session && req.session.user && req.session.user.esAdmin){
+    if(req.session && req.session.user && req.session.user.esOwner){
       Producto.findById(productoEditar, function(err, producto){
         if(err) {
           console.log(err);
@@ -42,7 +42,7 @@ exports.editarGet = function(req, res, next) {
 };
 
 exports.crearGet = async (req, res) => {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     res.render('empresas/crear', { usuario: req.session.user, bgClass:'bg-dark'});
   }else{
     res.redirect('/empresas');
@@ -53,7 +53,7 @@ exports.crearGet = async (req, res) => {
 exports.uploadFiles = upload.array('files', 8);
 
 exports.crearPost = async (req, res) => {
-  if(req.session && req.session.user && req.session.user.esAdmin){
+  if(req.session && req.session.user && req.session.user.esOwner){
     let data =
     {
         "nombre_fantasia": req.body.nombre_fantasia,

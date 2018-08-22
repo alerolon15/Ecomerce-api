@@ -14,12 +14,20 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       {{#this}}
         <ul class="nav navbar-nav navbar-left">
-          {{#if this.esAdmin }}
+          {{#if this.esOwner }}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Empresas <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="/owner/crearEmpresas">Crear empresa</a></li>
                 <li><a href="/owner/listaEmpresas">Ver lista de Empresas</a></li>
+            </ul>
+          </li>
+          {{/if}}
+          {{#if this.esAdmin }}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Usuarios <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/listaUsuarios">Ver lista de usuarios</a></li>
             </ul>
           </li>
           {{/if}}
@@ -31,7 +39,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="logo">{{ this.iniciales }}</span> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              {{#if this.esAdmin }}
+              {{#if this.esOwner }}
                 <li><a href="owner/listaEmpresas">Ver mis empresas</a></li>
                 <li role="separator" class="divider"></li>
               {{/if}}
