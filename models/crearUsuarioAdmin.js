@@ -10,7 +10,7 @@ var apellido = "administrador";
 var email = "admin@admin.com";
 var password = "admin++";
 var iniciales = setIniciales(nombre,apellido);
-console.log(iniciales);
+//console.log(iniciales);
 var esAdmin = true;
 var esOwner = true;
 

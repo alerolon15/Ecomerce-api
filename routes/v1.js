@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const User = require('../models/user');
 const CompanyController = require('../controllers/CompanyController');
 const ProductController = require('../controllers/ProductController');
 const imgUpload = require('../middleware/google-storage');
@@ -13,8 +14,25 @@ const m = multer({
 
 const { checkCompany } = require('../middleware/companyMiddleware');
 
-router.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'api v1 root' });
+router.get('/', async (req, res) => {
+  //[err, usuarios] = await to(User.find({email:req.headers.user}));
+  //console.log(usuarios);
+  //if(usuarios) {
+    let routesApi = [];
+    for (var i = 0, len = router.stack.length; i < len; i++) {
+      let route = {
+        nombre:router.stack[i].route.stack[0].name,
+        path:'/v1' + router.stack[i].route.path,
+        metodo:router.stack[i].route.stack[0].method
+      }
+      routesApi.push(route);
+    }
+    let response = { status: 'success', routesApi }
+    //res.set({'Content-Type': 'application/json; charset=utf-8'}).send(200, JSON.stringify(response, undefined, ' '));
+    res.status(200).json({ status: 'success', routesApi });
+  //}else{
+  //  res.json({ status: 'no autorizado', message: 'Usted no tiene autorizacion para consumir el servicio API.' },401);
+  //}
 });
 
 // CRUD companies
