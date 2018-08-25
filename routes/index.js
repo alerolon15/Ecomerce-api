@@ -38,6 +38,7 @@ router.get('/:urlkey', function(req, res, next) {
         }
       });
       if(req.session && req.session.user){
+        //console.log(req.session.user.carrito)
         res.render('index/commerce', { usuario: req.session.user, productos: productos, categorias: categoriasV, compania:compania});
       }else{
         res.render('index/commerce', { productos: productos,categorias: categoriasV, compania:compania});

@@ -14,7 +14,8 @@ exports.get = function(req, res, next) {
         return res.render('carrito/carrito', {usuario: req.session.user, products: null, compania:compania});
       }
       var carrito = new Carrito(req.session.user.carrito);
-      res.render('carrito/carrito', {usuario: req.session.user, products: carrito.generateArray(), totalPrice: carrito.totalPrice, compania:compania});
+
+      res.render('carrito/carrito', {usuario: req.session.user, products: carrito.generateArrayCompany(urlkey), totalPrice: carrito.totalPrice, compania:compania});
     });
   }else{
     res.redirect("/")

@@ -32,6 +32,16 @@ module.exports = function Carrito(oldCart) {
         delete this.items[id];
     };
 
+    this.generateArrayCompany = function(urlkey) {
+        var arr = [];
+        for (var id in this.items) {
+            if(this.items[id].item.urlcompanias == urlkey){
+              arr.push(this.items[id]);
+            };
+        }
+        return arr;
+    };
+
     this.generateArray = function() {
         var arr = [];
         for (var id in this.items) {

@@ -39,7 +39,7 @@ exports.borrar = async (req, res) => {
       console.log(err);
     };
     if(req.session && req.session.user && req.session.user.esOwner){
-      res.redirect('/listaEmpresas');
+      res.redirect('/owner/listaEmpresas');
     }else{
       res.redirect('/empresas');
     }

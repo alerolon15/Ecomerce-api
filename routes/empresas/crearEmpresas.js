@@ -54,6 +54,25 @@ exports.uploadFiles = upload.array('files', 8);
 
 exports.crearPost = async (req, res) => {
   if(req.session && req.session.user && req.session.user.esOwner){
+    /* validaciones del registro */
+    req.check('nombre_fantasia', 'Ingrese un nombre!').notEmpty();
+    req.check('nombres', 'Ingrese una imagen principal!').notEmpty();
+    req.check('email', 'Ingrese un email!').notEmpty();
+    req.check('direccion', 'Ingrese una dirección!').notEmpty();
+    var listaErrores = req.validationErrors();
+    if (listaErrores) {
+      var mensajes = [];
+      listaErrores.forEach(function(error){
+          mensajes.push(error.msg);
+      });
+
+      return res.render('empresas/crear', {
+        usuario: req.session.user,
+        bgClass:'bg-dark',
+        errores: mensajes,
+        datos: req.body
+      });
+    };
     let data =
     {
         "nombre_fantasia": req.body.nombre_fantasia,
@@ -111,7 +130,9 @@ exports.crearPost = async (req, res) => {
     var empresa = new Company(data);
     empresa.save(function(err){
       if (err) {
-        res.send(err);
+        console.log('error al guardar empresa');
+        console.log(err);
+        console.log('----------');
         res.render('empresas/crear', {
           usuario: req.session.user,
           bgClass:'bg-dark',
@@ -127,6 +148,7 @@ exports.crearPost = async (req, res) => {
         });
       };
     });
+  }else{
+    res.redirect('/empresas');
   };
-  res.redirect('/empresas');
 };
