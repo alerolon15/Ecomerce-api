@@ -6,6 +6,7 @@ const Company = require('../models/company');
 const path = require('path');
 const multer = require('multer');
 const carrito = require('./carrito/carrito');
+const Carrito = require('../models/carrito');
 const ProductosCrear = require('./productos/crearProducto');
 const ProductosInfo = require('./productos/infoProducto');
 const ProductosLista = require('./productos/listaProducto');
@@ -38,7 +39,6 @@ router.get('/:urlkey', function(req, res, next) {
         }
       });
       if(req.session && req.session.user){
-        //console.log(req.session.user.carrito)
         res.render('index/commerce', { usuario: req.session.user, productos: productos, categorias: categoriasV, compania:compania});
       }else{
         res.render('index/commerce', { productos: productos,categorias: categoriasV, compania:compania});

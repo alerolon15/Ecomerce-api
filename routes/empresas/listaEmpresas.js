@@ -38,10 +38,16 @@ exports.borrar = async (req, res) => {
     if(err) {
       console.log(err);
     };
-    if(req.session && req.session.user && req.session.user.esOwner){
-      res.redirect('/owner/listaEmpresas');
-    }else{
-      res.redirect('/empresas');
-    }
+    Producto.remove({urlcompanias:compania.url_key}, function(err){
+      if (err) {
+        console.log('error al borrar los productos de la empresa.');
+        console.log('MensajeError: ' + err);
+      }
+      if(req.session && req.session.user && req.session.user.esOwner){
+        res.redirect('/owner/listaEmpresas');
+      }else{
+        res.redirect('/empresas');
+      }
+    });
   });
 };
